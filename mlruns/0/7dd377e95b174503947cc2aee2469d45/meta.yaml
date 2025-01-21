@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/tania/Desktop/NOVA/ITP%20150%20Python/PycharmProjects2/MLDevOps/Project-Build-an-ML-Pipeline-Starter/mlruns/0/7dd377e95b174503947cc2aee2469d45/artifacts
+end_time: 1737472170101
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7dd377e95b174503947cc2aee2469d45
+run_name: whimsical-tern-692
+run_uuid: 7dd377e95b174503947cc2aee2469d45
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737472125664
+status: 3
+tags: []
+user_id: tania

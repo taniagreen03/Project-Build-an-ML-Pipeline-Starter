@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/tania/Desktop/NOVA/ITP%20150%20Python/PycharmProjects2/MLDevOps/Project-Build-an-ML-Pipeline-Starter/mlruns/0/cda6ab2a3b504a85ba28d6e3e7553ceb/artifacts
+end_time: 1737472169778
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cda6ab2a3b504a85ba28d6e3e7553ceb
+run_name: silent-bass-639
+run_uuid: cda6ab2a3b504a85ba28d6e3e7553ceb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737472141449
+status: 3
+tags: []
+user_id: tania
