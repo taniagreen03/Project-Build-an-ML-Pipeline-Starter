@@ -22,6 +22,7 @@ _steps = [
 
 # This automatically reads in the configuration
 @hydra.main(config_path="config", config_name="config", version_base="1.1")
+# @hydra.main(config_name="config")
 def go(config: DictConfig):
 
     # Setup the wandb experiment. All runs will be grouped under this name
@@ -54,33 +55,44 @@ def go(config: DictConfig):
             # Implement here #
             ##################
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/basic_cleaning",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
+                entry_point="main",
+                parameters={
+                    "input_artifact": "sample.csv:latest",
+                    "output_artifact": "clean_sample.csv",
+                    "output_type": "cleaned_data",
+                    "output_description": "Cleaned dataset after basic preprocessing",
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
+                },
+            )
+            #     f"{config['main']['components_repository']}/basic_cleaning",
+            #     "main",
+            #     parameters={
+            #         "input_artifact": config["etl"]["input_artifact"],
+            #         "output_artifact": config["etl"]["clean_data"],
+            #         "output_type": config["etl"]["output_type"],
+            #         "output_description": config["etl"]["output_description"],
+            #         "min_price": config["etl"]["min_price"],
+            #         "max_price": config["etl"]["max_price"]
+            #     },
+            # )
+
+        if "data_check" in active_steps:
+        ##################
+        # Implement here #
+        ##################
+            _ = mlflow.run(
+                f"{config['main']['components_repository']}/data_check",
                 "main",
                 parameters={
-                    "input_artifact": config["etl"]["input_artifact"],
-                    "output_artifact": config["etl"]["clean_data"],
-                    "output_type": config["etl"]["output_type"],
-                    "output_description": config["etl"]["output_description"],
+                    "csv": "clean_sample.csv:latest",
+                    "ref": "clean_sample.csv:reference",
+                    "kl_threshold": config["data_check"]["kl_threshold"],
                     "min_price": config["etl"]["min_price"],
                     "max_price": config["etl"]["max_price"]
                 },
             )
-
-            if "data_check" in active_steps:
-            ##################
-            # Implement here #
-            ##################
-                _ = mlflow.run(
-                    f"{config['main']['components_repository']}/data_check",
-                    "main",
-                    parameters={
-                        "csv": "clean_sample.csv:latest",
-                        "ref": "clean_sample.csv:reference",
-                        "kl_threshold": config["data_check"]["kl_threshold"],
-                        "min_price": config["etl"]["min_price"],
-                        "max_price": config["etl"]["max_price"]
-                    },
-                )
 
         if "data_split" in active_steps:
             ##################
