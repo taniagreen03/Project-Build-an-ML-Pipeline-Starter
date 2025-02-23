@@ -25,8 +25,7 @@ def go(args):
     # particular version of the artifact
     logger.info('Fetching raw dataset.')
     artifact = run.use_artifact(args.input_artifact)
-    local_path = artifact.file()
-    #local_path = wandb.use_artifact('sample.csv:latest').file()
+    local_path = wandb.use_artifact('sample.csv:latest').file()
     df = pd.read_csv(local_path)
     
     # EDA with arguments passed into the step

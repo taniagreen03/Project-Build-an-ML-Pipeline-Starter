@@ -51,10 +51,7 @@ def go(config: DictConfig):
             )
 
         if "basic_cleaning" in active_steps:
-            ##################
-            # Implement here #
-            ##################
-            _ = mlflow.run(
+            mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 entry_point="main",
                 parameters={
@@ -67,13 +64,12 @@ def go(config: DictConfig):
                 },
             )
 
-
         if "data_check" in active_steps:
-        ##################
-        # Implement here #
-        ##################
+            ##################
+            # Implement here #
+            ##################
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/data_check",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
                 "main",
                 parameters={
                     "csv": "clean_sample.csv:latest",
@@ -97,7 +93,7 @@ def go(config: DictConfig):
                     "random_seed":config['modeling']['random_seed'],
                     "stratify_by":config['modeling']['stratify_by']
 
-                }
+                },
             )
 
         if "train_random_forest" in active_steps:
@@ -123,7 +119,6 @@ def go(config: DictConfig):
             ##################
 
             pass
-
 
 if __name__ == "__main__":
     go()
