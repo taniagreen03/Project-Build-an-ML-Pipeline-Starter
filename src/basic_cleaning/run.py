@@ -24,7 +24,6 @@ def go(args):
     # Download input artifact. This will also log that this script is using this
     # particular version of the artifact
     logger.info('Fetching raw dataset.')
-    artifact = run.use_artifact(args.input_artifact)
     local_path = wandb.use_artifact('sample.csv:latest').file()
     df = pd.read_csv(local_path)
     

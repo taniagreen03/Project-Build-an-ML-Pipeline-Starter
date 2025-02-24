@@ -66,14 +66,33 @@ def test_similar_neigh_distrib(data: pd.DataFrame, ref_data: pd.DataFrame, kl_th
 
 def test_row_count(data):
     """
-    test to confirm the number of rows in a dataset
+    Test to confirm the number of rows in a dataset
     is greater than 15,000 and less than 1,000,000
     """
     assert 15000 < data.shape[0] < 1000000
 def test_price_range(data, min_price, max_price):
     """
-    test to check if every value (price)
-     is between the minimum and maxixmum value (price)
+    Test to check if every value (price)
+    is between the minimum and maxixmum value (price)
      """
     assert data['price'].between(min_price, max_price).all()
+
+
+# def test_price_range(data, min_price, max_price):
+#     """
+#     Not my original code. helper code to debug Assertion error
+#     Test to check if every price value is between min_price and max_price.
+#     """
+#     out_of_range = data[~data["price"].between(float(min_price), float(max_price))]
+#
+#     print("\n✅ Checking 'price' column:")
+#     print(f"✅ min_price: {min_price} ({type(min_price)})")
+#     print(f"✅ max_price: {max_price} ({type(max_price)})")
+#     print(f"✅ Data type of 'price' column: {data['price'].dtype}")
+#
+#     if not out_of_range.empty:
+#         print(f"❌ Some prices are out of range:\n{out_of_range[['id', 'price']]}")  # Print only price column
+#
+#     assert out_of_range.empty, f"❌ Test failed: Some prices are out of range:\n{out_of_range[['id', 'price']]}"
+#
 
