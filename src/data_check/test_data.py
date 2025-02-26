@@ -78,21 +78,5 @@ def test_price_range(data, min_price, max_price):
     assert data['price'].between(min_price, max_price).all()
 
 
-# def test_price_range(data, min_price, max_price):
-#     """
-#     Not my original code. helper code to debug Assertion error
-#     Test to check if every price value is between min_price and max_price.
-#     """
-#     out_of_range = data[~data["price"].between(float(min_price), float(max_price))]
-#
-#     print("\n✅ Checking 'price' column:")
-#     print(f"✅ min_price: {min_price} ({type(min_price)})")
-#     print(f"✅ max_price: {max_price} ({type(max_price)})")
-#     print(f"✅ Data type of 'price' column: {data['price'].dtype}")
-#
-#     if not out_of_range.empty:
-#         print(f"❌ Some prices are out of range:\n{out_of_range[['id', 'price']]}")  # Print only price column
-#
-#     assert out_of_range.empty, f"❌ Test failed: Some prices are out of range:\n{out_of_range[['id', 'price']]}"
-#
+
 
