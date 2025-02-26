@@ -21,7 +21,7 @@ _steps = [
 
 
 # This automatically reads in the configuration
-@hydra.main(config_path=".", config_name="config", version_base="1.1")
+@hydra.main(config_path="config", config_name="config", version_base="1.1")
 # @hydra.main(config_name="config")
 def go(config: DictConfig):
 
